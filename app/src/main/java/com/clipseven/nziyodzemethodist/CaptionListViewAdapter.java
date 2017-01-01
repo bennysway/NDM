@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-/**
- * Created by bennysway on 28.12.16.
- */
+
 
 public class CaptionListViewAdapter extends BaseAdapter {
     private static ArrayList<CaptionStorage> searchArrayList;
