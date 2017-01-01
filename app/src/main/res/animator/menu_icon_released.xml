@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="300"
+        android:propertyName="pathData"
+        android:valueFrom="
+        M 60 80 c 100 0 100 0 200 0 c 41 -1 41 39 0 40 h -200 c -40 1 -40 -39 0 -40 z
+        M 60 120 h 200 c 40 0 40 40 0 40 h -200 c -40 0 -40 -40 0 -40 z
+        M 60 160 h 200 c 40 0 40 40 0 40 c -100 0 -100 0 -200 0 c -40 0 -40 -40 0 -40 z
+        "
+        android:valueTo="
+        M 60 40 c 100 0 100 0 200 0 c 41 -1 41 39 0 40 h -200 c -40 1 -40 -39 0 -40 z
+        M 60 120 h 200 c 40 0 40 40 0 40 h -200 c -40 0 -40 -40 0 -40 z
+        M 60 200 h 200 c 40 0 40 40 0 40 c -100 0 -100 0 -200 0 c -40 0 -40 -40 0 -40 z
+        "
+        android:valueType="pathType"/>
+    <objectAnimator
+        android:duration="500"
+        android:propertyName="fillColor"
+        android:valueFrom="@color/burn"
+        android:valueTo="@color/white"
+
+        />
+    <objectAnimator
+        android:duration="100"
+        android:propertyName="strokeColor"
+        android:valueFrom="@color/white"
+        android:valueTo="@color/burnFaded"
+        />
+</set>

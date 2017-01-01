@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/launch">
+
+    <include layout="@layout/video_bg" />
+
+    <TextView
+        android:text="Line1"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:textSize="45sp"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="15.0"
+        android:fontFamily="cursive"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/line1"
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
+
+    <TextView
+        android:text="Line2"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:padding="10dp"
+        android:textSize="45sp"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="15.0"
+        android:fontFamily="cursive"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:id="@+id/line2"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="hymn"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:textSize="20sp"
+        android:shadowDx="0.0"
+        android:shadowDy="0.0"
+        android:shadowRadius="15.0"
+        android:fontFamily="cursive"
+        android:layout_width="match_parent"
+        android:id="@+id/hymnline"
+        android:layout_height="50dp"
+        android:layout_below="@+id/line2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="right"
+        android:padding="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/skipSplash"
+        android:drawableEnd="@drawable/close_icon"
+        style="@style/Widget.AppCompat.Button.Borderless" />
+
+    <!--Like Spotify image-->
+
+
+</RelativeLayout>

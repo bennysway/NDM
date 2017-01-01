@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="500"
+        android:propertyName="fillColor"
+        android:valueFrom="@color/white"
+        android:valueTo="@color/fadedBlack"
+        />
+    <objectAnimator
+        android:duration="500"
+        android:propertyName="strokeColor"
+        android:valueFrom="@color/burn"
+        android:valueTo="@color/burnFaded"
+        />
+
+</set>

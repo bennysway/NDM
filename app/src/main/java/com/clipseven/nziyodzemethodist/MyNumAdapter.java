@@ -1,0 +1,60 @@
+package com.clipseven.nziyodzemethodist;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
+import android.text.Layout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import static android.content.Context.MODE_PRIVATE;
+
+
+class MyNumAdapter extends ArrayAdapter {
+    MyNumAdapter(Context context, String[] values) {
+        super(context,R.layout.num_list ,values);
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater theInflater = (LayoutInflater.from(getContext()));
+        View theView = theInflater.inflate(R.layout.num_list,parent,false);
+        String hymnEntry = (String) getItem(position);
+
+        TextView theTextView = (TextView) theView.findViewById(R.id.hymnbutton);
+        theTextView.setText(hymnEntry);
+        String list = MainActivity.userData(MyNumAdapter.super.getContext(),"favlist","","");
+        String[] favs = list.split(",");
+        int counter=0;
+
+        for( int i=0; i<list.length(); i++ ) {
+            if (list.charAt(i) == ',') {
+                counter++;
+            }
+        }
+        for(int i=0;i<counter;i++){
+            if(Integer.parseInt(favs[i])==position+1){
+                theTextView.setBackgroundResource(R.drawable.grad_but_is_fav);
+                theTextView.setShadowLayer(10.0f,0.0f,0.0f, Color.WHITE);
+            }
+        }
+
+
+
+
+
+
+        return theView;
+    }
+
+    }

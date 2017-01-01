@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/menu_icon">
+    <target
+        android:animation="@animator/menu_icon_pressed"
+        android:name="v"/>
+</animated-vector>
