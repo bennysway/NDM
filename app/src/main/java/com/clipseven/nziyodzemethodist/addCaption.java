@@ -18,6 +18,7 @@ public class addCaption extends AppCompatActivity {
 
         hymnNum = getIntent().getStringExtra("hymnNum");
         hymnNumWord = getIntent().getStringExtra("hymnNumWord");
+        final Data recordCheck = new Data(this,"recordflag");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -37,7 +38,7 @@ public class addCaption extends AppCompatActivity {
                 Intent toRecord = new Intent(addCaption.this,hymnDisplay.class);
                 toRecord.putExtra("hymnNum",hymnNum);
                 toRecord.putExtra("hymnNumWord",hymnNumWord);
-                MainActivity.userData(addCaption.this,"recordflag","update","true");
+                recordCheck.update("true");
                 startActivity(toRecord);
                 finish();
             }

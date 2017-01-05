@@ -27,11 +27,6 @@ public class CaptionListViewAdapter extends BaseAdapter {
     private static ArrayList<CaptionStorage> searchArrayList;
 
     private LayoutInflater mInflater;
-    MediaPlayer mediaPlayer ;
-    String AudioSavePathInDevice = null;
-
-
-    boolean play = false;
 
     public CaptionListViewAdapter(Context context, ArrayList<CaptionStorage> results) {
         searchArrayList = results;
@@ -73,17 +68,9 @@ public class CaptionListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         TextView txtName;
         TextView txtCityState;
 
-    }
-    public boolean checkPermission(View v) {
-        int result = ContextCompat.checkSelfPermission((v.getContext()),
-                WRITE_EXTERNAL_STORAGE);
-        int result1 = ContextCompat.checkSelfPermission(v.getContext(),
-                RECORD_AUDIO);
-        return result == PackageManager.PERMISSION_GRANTED &&
-                result1 == PackageManager.PERMISSION_GRANTED;
     }
 }

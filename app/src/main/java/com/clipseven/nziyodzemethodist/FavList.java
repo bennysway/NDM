@@ -39,6 +39,7 @@ public class FavList extends AppCompatActivity {
         final Intent toHymn = new Intent(this,hymnDisplay.class);
         final Intent toRemoveFav = new Intent(this,removeFav.class);
         toRemoveFav.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        Data favList = new Data(this,"favlist");
 
 
 
@@ -47,13 +48,13 @@ public class FavList extends AppCompatActivity {
         String s = getIntent().getStringExtra("hymnNum");
         String push = getIntent().getStringExtra("push");
         int counter = 0;
-        list = MainActivity.userData(this,"favlist","","");
+        list = favList.get();
 
 
 
         switch (push){
             case "yes":
-                list = MainActivity.userData(this,"favlist","pushBack",s);
+                list = favList.pushBack(s);
                 QuickToast("Added hymn " + s);
                 break;
             case "no":

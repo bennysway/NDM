@@ -43,7 +43,8 @@ public class ChoosePic extends AppCompatActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-            MainActivity.userData(ChoosePic.this,"image","update",picturePath);
+            Data image = new Data(this,"image");
+            image.update(picturePath);
         }
         QuickToast("Picture will update after restarting the hymn book application.");
         finish();

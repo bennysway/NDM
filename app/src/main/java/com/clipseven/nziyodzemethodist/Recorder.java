@@ -35,6 +35,7 @@ public class Recorder extends AppCompatActivity {
     public static final int RequestPermissionCode = 1;
     MediaPlayer mediaPlayer ;
     String hymnNum,capStoreKey;
+    Data key;
 
 
     @Override
@@ -43,7 +44,7 @@ public class Recorder extends AppCompatActivity {
         setContentView(R.layout.activity_recorder);
         hymnNum = getIntent().getStringExtra("hymnNum");
         capStoreKey = hymnNum+"key";
-
+        key = new Data(this,capStoreKey);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -75,9 +76,9 @@ public class Recorder extends AppCompatActivity {
                     AudioSavePathInDevice =
                             Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
                                     CreateRandomAudioFileName(5) + "AudioRecording.3gp";
-                    MainActivity.userData(Recorder.this,capStoreKey,"pushBack",timeStamp());
-                    MainActivity.userData(Recorder.this,capStoreKey,"pushBack","recording");
-                    MainActivity.userData(Recorder.this,capStoreKey,"pushBack",AudioSavePathInDevice);
+                    key.pushBack(timeStamp());
+                    key.pushBack("recording");
+                    key.pushBack(AudioSavePathInDevice);
 
                     MediaRecorderReady();
 

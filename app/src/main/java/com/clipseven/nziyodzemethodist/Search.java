@@ -5,24 +5,18 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Vector;
 
 public class Search extends AppCompatActivity {
 
     ListView ls;
-    String list;
-    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +26,12 @@ public class Search extends AppCompatActivity {
         TextView noResults = (TextView) findViewById(R.id.noResultText);
         ls = (ListView) findViewById(R.id.searchListView);
         final Intent toHymn = new Intent(this,hymnDisplay.class);
-        MainActivity.userData(this,"recordflag","deleteAll","");
+        Data recordFlag = new Data(this,"recordflag");
+        recordFlag.deleteAll();
 
 
 
         String search = getIntent().getStringExtra("search");
-        int found =0;
-        String appender = "";
-        String subappender = "";
         final ArrayList<SearchResults> results = new ArrayList<>();
 
         for(int i=1;i<=317; i++){

@@ -47,7 +47,8 @@ public class Splash extends AppCompatActivity {
         String [] hymn;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean longSplash = preferences.getBoolean("long_splash",true);
-        MainActivity.userData(this,"recordflag","deleteAll","");
+        Data recordFlag = new Data(this,"recordflag");
+        recordFlag.deleteAll();
         start = new Handler();
 
 

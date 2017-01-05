@@ -20,6 +20,7 @@ public class RecList extends AppCompatActivity {
     ListView ls;
     String list = "";
     ArrayAdapter<String> adapter;
+    Data recordFlag,recList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,10 @@ public class RecList extends AppCompatActivity {
         setContentView(R.layout.activity_rec_list);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        MainActivity.userData(this,"recordflag","deleteAll","");
+
+        recordFlag = new Data(this,"recordflag");
+        recList = new Data(this,"reclist");
+        recordFlag.deleteAll();
 
 
         TextView norecText = (TextView) findViewById(R.id.norecText);
@@ -38,7 +42,7 @@ public class RecList extends AppCompatActivity {
         FloatingActionButton del = (FloatingActionButton) findViewById(R.id.deleteHistory);
         int counter = 0;
 
-        list = MainActivity.userData(this,"reclist","","");
+        list =recList.get();
         for( int i=0; i<list.length(); i++ ) {
             if( list.charAt(i) == ',' ) {
                 counter++;
@@ -77,7 +81,7 @@ public class RecList extends AppCompatActivity {
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.userData(RecList.this,"reclist","deleteAll","");
+                recList.deleteAll();
                 QuickToast("History has been cleared.");
                 startActivity(toHome);
             }

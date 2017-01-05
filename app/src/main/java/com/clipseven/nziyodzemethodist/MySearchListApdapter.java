@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by bennysway on 28.12.16.
- */
 
 public class MySearchListApdapter extends BaseAdapter {
     private static ArrayList<SearchResults> searchArrayList;

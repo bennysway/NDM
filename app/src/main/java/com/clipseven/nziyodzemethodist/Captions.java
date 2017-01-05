@@ -39,12 +39,17 @@ public class Captions extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        MainActivity.userData(this,"recordflag","deleteAll","");
+        Data recordFlag = new Data(this,"recordflag");
+        Data withCaption = new Data(this,"withcaption");
+
+
+        recordFlag.deleteAll();
 
 
         final String hymnNumWord = getIntent().getStringExtra("hymnNumWord");
         final String hymnNum = getIntent().getStringExtra("hymnNum");
         capStoreKey = hymnNumWord;
+        Data storedKey = new Data(this,capStoreKey);
 
         ls = (ListView) findViewById(R.id.captionListView);
         final Button addCaption = (Button) findViewById(R.id.addCaptionBut);
@@ -52,10 +57,10 @@ public class Captions extends AppCompatActivity {
 
 
 
-        final String raw = MainActivity.userData(Captions.this,capStoreKey,"","");
+        final String raw = storedKey.get();
         if(!raw.equals("")){
-            if(MainActivity.userData(this,"withcaption","find",capStoreKey).equals("false"))
-                MainActivity.userData(this,"withcaption","pushBack",capStoreKey);
+            if(!withCaption.find(capStoreKey))
+                withCaption.pushBack(capStoreKey);
 
             rawArray = raw.split(",");
 
@@ -99,8 +104,8 @@ public class Captions extends AppCompatActivity {
         }
         else {
             QuickToast("No captions available");
-            if(MainActivity.userData(this,"withcaption","find",capStoreKey).equals("true"))
-                MainActivity.userData(this,"withcaption","delete",capStoreKey);
+            if(withCaption.find(capStoreKey))
+                withCaption.delete(capStoreKey);
 
 
         }

@@ -24,7 +24,8 @@ class MyListAdapter extends ArrayAdapter {
 
         TextView theTextView = (TextView) theView.findViewById(R.id.hymnFirstLinebut);
         theTextView.setText(hymnEntry);
-        String list = MainActivity.userData(MyListAdapter.super.getContext(), "favlist","" ,"" );
+        Data favList = new Data(MyListAdapter.super.getContext(),"favlist");
+        String list = favList.get();
         String[] favs = list.split(",");
         int counter = 0;
 

@@ -32,6 +32,7 @@ public class AdjustTextSize extends AppCompatActivity {
         final TextView sample = (TextView)findViewById(R.id.textSizeSample);
         Button acceptSize = (Button) findViewById(R.id.textSizeApplyBut);
         Button defaultSize = (Button) findViewById(R.id.textSizeDefaultBut);
+        final Data size = new Data(this,"textsize");
 
         track.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -55,7 +56,7 @@ public class AdjustTextSize extends AppCompatActivity {
         acceptSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.userData(AdjustTextSize.this,"textsize","update",IntToStr(r));
+                size.update(IntToStr(r));
                 QuickToast("Text size set to "+IntToStr(r)+" sp");
                 finish();
 
@@ -64,8 +65,8 @@ public class AdjustTextSize extends AppCompatActivity {
         defaultSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.userData(AdjustTextSize.this,"textsize","update",IntToStr(40));
-                QuickToast("Text size set to "+IntToStr(40)+" sp");
+                size.update("40");
+                QuickToast("Text size set to 40 sp");
                 finish();
 
             }

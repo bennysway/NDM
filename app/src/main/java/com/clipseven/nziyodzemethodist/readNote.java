@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 public class readNote extends AppCompatActivity {
     String fullFile,key,record;
+    Data note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,11 @@ public class readNote extends AppCompatActivity {
         final EditText editor = (EditText) findViewById(R.id.editOpenedNote);
         editor.setVisibility(View.INVISIBLE);
         editor.setAlpha(0f);
+        note = new Data(this,key+fullFile);
 
 
-        displaytext.setText(MainActivity.userData(readNote.this,key+fullFile,"",""));
-        editor.setText(MainActivity.userData(readNote.this,key+fullFile,"",""));
+        displaytext.setText(note.get());
+        editor.setText(note.get());
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +61,7 @@ public class readNote extends AppCompatActivity {
                             public void onClick(View v) {
                                 String newText = editor.getText().toString();
                                 if(!newText.equals("")){
-                                    MainActivity.userData(readNote.this,key+fullFile,"update",newText);
+                                    note.update(newText);
                                     QuickToast("Saved");
                                     finish();
                                 }

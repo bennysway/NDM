@@ -58,6 +58,7 @@ public class hymnDisplay extends AppCompatActivity {
     String RandomAudioFileName = "ABCDEFGHIJKLMNOP";
     public static final int RequestPermissionCode = 1;
     String hymnNum,capStoreKey;
+    Data favList,recordFlag;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -67,13 +68,18 @@ public class hymnDisplay extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        favList = new Data(this,"favlist");
+        Data recList = new Data(this,"reclist");
+        Data color = new Data(this,"color");
+        Data textSizeData = new Data(this,"textsize");
+        recordFlag = new Data(this,"recordflag");
+
         final String s = getIntent().getStringExtra("hymnNum");
         final String safe = NumToWord.convert(StrToInt(s)) + "key";
         capStoreKey = safe;
         final String t = "hymn" + s + "firstline";
         String h = "hymn" + s ;
         String c = "hymn" + s + "caption";
-        final String isFav = MainActivity.userData(this,"favlist","find",s);
 
         String [] hymn;
         final TextView [] pairs;
@@ -150,9 +156,8 @@ public class hymnDisplay extends AppCompatActivity {
 
 
 
-        MainActivity.userData(this,"reclist","pushFront",s);
-        String colorMode = MainActivity.userData(this,"color","","");
-        switch (colorMode){
+        recList.pushFront(s);
+        switch (color.get()){
             case "night":
                 bg.setImageDrawable(getDrawable(R.color.black));
                 display.setBackground(getDrawable(R.color.black));
@@ -171,12 +176,12 @@ public class hymnDisplay extends AppCompatActivity {
                 capColor = BLACK;
                 hymnnumColor = parseColor("#50000000");
         }
-        String g = MainActivity.userData(this,"textsize","","");
+        String g = textSizeData.get();
         if(g.equals(""))
             textSize = 40f;
         else
             textSize = Float.valueOf(g);
-        String g1 = MainActivity.userData(this,"recordflag","","");
+        String g1 = recordFlag.get();
         if (g1.equals("true")){
             inflateBottomRecordingToolbar(getIntent().getStringExtra("hymnNumWord"));
         }
@@ -370,7 +375,7 @@ public class hymnDisplay extends AppCompatActivity {
         });
 
 
-        if(isFav.equals("true")){
+        if(favList.find(s)){
             favToggle.setBackground(heart);
             assert heart != null;
             heart.start();
@@ -390,14 +395,14 @@ public class hymnDisplay extends AppCompatActivity {
                     favToggle.setBackground(noheart);
                     assert noheart != null;
                     noheart.start();
-                    MainActivity.userData(hymnDisplay.this,"favlist","delete",s);
+                    favList.delete(s);
                     favBool = false;
                 }
                 else {
                     favToggle.setBackground(heart);
                     assert heart != null;
                     heart.start();
-                    MainActivity.userData(hymnDisplay.this,"favlist","pushBack",s);
+                    favList.pushBack(s);
                     favBool = true;
                 }
             }
@@ -650,8 +655,8 @@ public class hymnDisplay extends AppCompatActivity {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, "Nziyo DzeMethodist");
-            String sAux = "\nLet me recommend you this application\n\n";
-            sAux = sAux + "https://play.google.com/store/apps/details?id=Orion.Soft \n\n";
+            String sAux = "Methodist Church in Zimbabwe\nNziyo dzeMethodist\nHymnBook\nNow available on Google Play\n\n";
+            sAux = sAux + "https://play.google.com/store/apps/details?id=com.clipseven.nziyodzemethodist \n\n";
             i.putExtra(Intent.EXTRA_TEXT, sAux);
             startActivity(Intent.createChooser(i, "Share the Gospel:"));
         } catch(Exception e) {
@@ -669,7 +674,7 @@ public class hymnDisplay extends AppCompatActivity {
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, "Nziyo DzeMethodist");
             i.putExtra(Intent.EXTRA_TEXT, s);
-            startActivity(Intent.createChooser(i, "Share the Gospel:"));
+            startActivity(Intent.createChooser(i, "Share Hymn via:"));
         } catch(Exception e) {
             //e.toString();
         }
@@ -792,7 +797,7 @@ public class hymnDisplay extends AppCompatActivity {
                 h2.removeCallbacks(run);
 
                 mediaRecorder.stop();
-                MainActivity.userData(hymnDisplay.this,"recordflag","deleteAll","");
+                recordFlag.deleteAll();
                 finish();
 
             }

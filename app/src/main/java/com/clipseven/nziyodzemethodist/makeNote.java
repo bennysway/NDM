@@ -2,6 +2,7 @@ package com.clipseven.nziyodzemethodist;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -30,6 +31,7 @@ public class makeNote extends AppCompatActivity {
     String RandomNoteFileName = "abcdefghijklmnop";
     Random random ;
     String fullFile,key;
+    Data dataKey;
 
 
     @Override
@@ -37,6 +39,7 @@ public class makeNote extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_note);
         key = getIntent().getStringExtra("captionKey");
+        dataKey = new Data(this,key);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -101,10 +104,11 @@ public class makeNote extends AppCompatActivity {
     {
         random = new Random();
         fullFile = CreateRandomAudioFileName(5)+key;
-        MainActivity.userData(makeNote.this,key,"pushBack",timeStamp());
-        MainActivity.userData(makeNote.this,key,"pushBack","note");
-        MainActivity.userData(makeNote.this,key,"pushBack",fullFile);
-        MainActivity.userData(makeNote.this,key+fullFile,"update",body);
+        Data fullKey = new Data(this,key+fullFile);
+        dataKey.pushBack(timeStamp());
+        dataKey.pushBack("note");
+        dataKey.pushBack(fullFile);
+        fullKey.update(body);
     }
     public String CreateRandomAudioFileName(int string){
         StringBuilder stringBuilder = new StringBuilder( string );
@@ -122,7 +126,7 @@ public class makeNote extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
     }
     public void copy(String s){
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Hymn", s);
         clipboard.setPrimaryClip(clip);
         QuickToast("Hymn copied to clipboard");

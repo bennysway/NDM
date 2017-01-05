@@ -48,7 +48,6 @@ public class MainDrawer extends AppCompatActivity {
     Intent toHymnNums,toSettings,toClearData;
     private DrawerLayout mDrawerLayout;
     private NavigationView navView;
-    private ActionBarDrawerToggle mdToggle;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -116,6 +115,7 @@ public class MainDrawer extends AppCompatActivity {
 
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Data image = new Data(this,"image");
         String clr = preferences.getString("example_text","Set name");
         appOwner.setText(clr);
         appOwner.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +124,7 @@ public class MainDrawer extends AppCompatActivity {
                 openGeneral();
             }
         });
-        String imagePath =  MainActivity.userData(MainDrawer.this,"image","","");
+        String imagePath =  image.get();
         if(imagePath.equals(""))
             appPic.setImageDrawable(getDrawable(R.drawable.nouser));
         else{

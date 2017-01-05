@@ -33,7 +33,8 @@ class MyNumAdapter extends ArrayAdapter {
 
         TextView theTextView = (TextView) theView.findViewById(R.id.hymnbutton);
         theTextView.setText(hymnEntry);
-        String list = MainActivity.userData(MyNumAdapter.super.getContext(),"favlist","","");
+        Data favList = new Data(MyNumAdapter.super.getContext(),"favlist");
+        String list = favList.get();
         String[] favs = list.split(",");
         int counter=0;
 

@@ -109,16 +109,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static SharedPreferences getSharedPreferences (Context ctxt) {
-        return ctxt.getSharedPreferences("FILE", 0);
-
-    }
-
-    public String IntToStr(int i){
-        return Integer.toString(i);
-    }
-
-
 
 
 }

@@ -37,6 +37,9 @@ public class DeleteCaption extends AppCompatActivity {
 
         getWindow().setLayout((int)(width*.8),(int)(height*.2));
 
+        final Data recordKey = new Data(this,key);
+        final Data pathKey = new Data(this,path);
+
         prompt.setText("Delete this caption?" );
 
 
@@ -51,11 +54,11 @@ public class DeleteCaption extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(type.equals("note")){
-                    MainActivity.userData(DeleteCaption.this,key,"deleteRecord",record);
-                    MainActivity.userData(DeleteCaption.this,path,"deleteAll","");
+                    recordKey.deleteRecord(record);
+                    pathKey.deleteAll();
                 }
                 else if(type.equals("recording")){
-                    MainActivity.userData(DeleteCaption.this,key,"deleteRecord",record);
+                    recordKey.deleteRecord(record);
                     File file = new File(path);
                     boolean deleted = file.delete();
                     if(deleted)

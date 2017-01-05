@@ -32,7 +32,8 @@ public class pickNum2 extends AppCompatActivity {
         final Intent toHymn = new Intent(this,hymnDisplay.class);
         final Intent toFav = new Intent(this,MakeFav.class);
         toFav.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        MainActivity.userData(this,"recordflag","deleteAll","");
+        Data recordFlag = new Data(this,"recordflag");
+        recordFlag.deleteAll();
 
 
 

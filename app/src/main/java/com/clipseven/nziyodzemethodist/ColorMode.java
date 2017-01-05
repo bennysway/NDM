@@ -18,6 +18,7 @@ public class ColorMode extends AppCompatActivity {
         final RadioGroup colorList = (RadioGroup) findViewById(R.id.colorModeRadioGroup);
         Button yes = (Button) findViewById(R.id.colorApply);
         Button no = (Button) findViewById(R.id.colorCancel);
+        final Data color = new Data(this,"color");
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,13 +35,13 @@ public class ColorMode extends AppCompatActivity {
                 String t = s.getText().toString();
                 switch (t){
                     case "Day":
-                        MainActivity.userData(ColorMode.this,"color","update","day");
+                        color.update("day");
                         break;
                     case "Night":
-                        MainActivity.userData(ColorMode.this,"color","update","night");
+                        color.update("night");
                         break;
                     default:
-                        MainActivity.userData(ColorMode.this,"color","deleteAll","");
+                        color.deleteAll();
                 }
                 finish();
             }
