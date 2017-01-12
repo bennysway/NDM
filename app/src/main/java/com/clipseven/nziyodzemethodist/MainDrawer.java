@@ -41,6 +41,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
 
 import static android.graphics.Color.parseColor;
 
@@ -107,7 +108,8 @@ public class MainDrawer extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(toTest);
+                Calendar cal = Calendar.getInstance();
+                QuickToast(String.valueOf(cal.get(Calendar.DATE)));
             }
         });
 

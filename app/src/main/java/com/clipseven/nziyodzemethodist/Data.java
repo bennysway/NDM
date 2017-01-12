@@ -68,9 +68,9 @@ public class Data {
     }
 
     boolean find(String data) {
-        list = "." + list;
+        String search = "." + list;
         data += ",";
-        return list.indexOf(data) > 0;
+        return search.indexOf(data) > 0;
     }
 
     String get(){
